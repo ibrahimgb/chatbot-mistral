@@ -2,6 +2,10 @@
 
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
 import { useEffect, useRef, useState } from "react";
 import styles from "./chat.module.scss";
 
@@ -76,7 +80,16 @@ export default function ChatPage() {
               msg.role === "user" ? styles.user : styles.assistant
             }`}
           >
+      {msg.role === "assistant" ? (
+  <div className={styles.markdown}>
+    <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {msg.content}
+    </ReactMarkdown>
+  </div>
+) : (
+  msg.content
+)}
+
           </div>
         ))}
         <div ref={messagesEndRef} />

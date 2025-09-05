@@ -41,11 +41,6 @@
   color: white;
 }
 
-.assistant {
-  align-self: flex-start;
-  background-color: #e5e5ea;
-  color: #000;
-}
 .inputContainer {
   display: flex;
   align-items: center;
@@ -94,5 +89,93 @@
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+}
+
+
+.message {
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 0.5rem;
+  max-width: 80%;
+  line-height: 1.5;
+  font-size: 1rem;
+  white-space: pre-wrap;
+}
+
+.user {
+  background-color: #10a37f;
+  color: white;
+  align-self: flex-end;
+}
+
+.assistant {
+    align-self: flex-start;
+  background-color: #e5e5ea;
+  color: #000;
+
+  background-color: #f3f3f3;
+  color: #333;
+  align-self: flex-start;
+
+}
+
+
+.message strong {
+  font-weight: 600; /* bold */
+}
+
+.message em {
+  font-style: italic;
+}
+
+.message ul,
+.message ol {
+  margin-left: 1.5rem;
+}
+
+
+.markdown {
+  strong {
+    font-weight: 600; // bold
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  p {
+    margin: 0.5rem 0;
+  }
+
+  ul, ol {
+    margin: 0.5rem 0 0.5rem 1.25rem;
+  }
+
+  li {
+    margin-bottom: 0.25rem;
+  }
+
+  code {
+    background: #eee;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+
+  pre > code {
+    display: block;
+    background: #222;
+    color: #f8f8f2;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.9em;
+  }
+
+  a {
+    color: #10a37f;
+    text-decoration: underline;
   }
 }

@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error(err);
     return NextResponse.json(
-      { error: "Failed to send chat" },
+      { error: "Failed to send chat", err },
       { status: 500 }
     );
   }

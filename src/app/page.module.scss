@@ -1,0 +1,41 @@
+@use '../styles/variables' as *;
+
+.mainWrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $neutral-light; 
+  text-align: center;
+  padding: 1rem;
+}
+
+.messageBox {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: $text-color;
+
+  strong {
+    color: $primary;
+  }
+}
+
+.chatBtn {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: $primary;
+  color: $neutral-light;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  }
+}

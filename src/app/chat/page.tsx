@@ -102,7 +102,10 @@ export default function ChatPage() {
 
     <div className={styles.chatWrapper}>
       <header className={styles.header}>
-        <h1>Mistral Chat</h1>
+            <h1>
+              <span className={styles.highlight}>Mistral</span> Chat
+              <span className={styles.subtitle}>Chatbot demo for the Internship </span>
+            </h1>
       </header>
 
       <div className={styles.messagesContainer}>

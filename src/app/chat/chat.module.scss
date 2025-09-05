@@ -1,21 +1,4 @@
-$primary: #ff8205;
-$primary-dark: #ffd800;
-$accent-red: #e10500;
-$neutral-light: #fffbea;
-$neutral-medium: #fff0c3;
-$neutral-dark: #e9e2cb;
-$assistant-bg: #f3f3f3;
-$assistant-dark-bg: #2a2a2a;
-$chat-bg: #f9f9f9;
-$chat-dark-bg: #1e1e1e;
-$header-bg: #343541;
-$header-color: #fff;
-$text-color: #333;
-$text-dark: #eee;
-$input-bg: #fff;
-$input-dark-bg: #2b2b2b;
-$input-border: #ccc;
-$input-dark-border: #444;
+@use '../../styles/variables' as *;
 
 .chatPageWrapper {
   position: relative;
@@ -79,10 +62,31 @@ $input-dark-border: #444;
 .header {
   background-color: $header-bg;
   color: $header-color;
-  padding: 1rem;
+  padding: .3rem;
   text-align: center;
   font-weight: bold;
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+
+    .highlight {
+      background: linear-gradient(90deg, $primary, $primary-dark);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: $neutral-dark;
+      margin-top: 0.25rem;
+    }
+  }
 }
+
 
 .messagesContainer {
   flex: 1;

@@ -21,7 +21,7 @@ export default function ChatPage() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  const [model, setModel] = useState(models[0].value); // store value
+  const [model, setModel] = useState(models[2].value); // defult to Mistral Small
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {

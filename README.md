@@ -2,6 +2,8 @@
 
 **Mistral Chat** is a web-based AI chat application built with **Next.js 13**, allowing users to interact with **Mistral LLM models**. It has a modern UI, dark mode, model selection, and Markdown support for AI responses.
 
+**Live Demo:** [chatbot-mistral-seven.vercel.app](https://chatbot-mistral-seven.vercel.app)
+
 ---
 
 ## Features

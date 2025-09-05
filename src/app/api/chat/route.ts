@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { messages } = (await req.json()) as { messages: ChatMessage[] };
-    const result = await sendChat(messages);
+    const { messages, model } = (await req.json()) as { messages: ChatMessage[], model:string };
+    const result = await sendChat(messages , model);
     return NextResponse.json(result);
   } catch (err) {
     console.error(err);

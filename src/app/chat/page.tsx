@@ -9,12 +9,19 @@ import remarkGfm from "remark-gfm";
 import { useEffect, useRef, useState } from "react";
 import styles from "./chat.module.scss";
 
-
 export default function ChatPage() {
+  const models = [
+    { label: "Mistral Large", value: "mistral-large-latest" },
+    { label: "Mistral Medium", value: "mistral-medium-latest" },
+    { label: "Mistral Small", value: "mistral-small-latest" },
+    { label: "Mistral Nemo", value: "mistral-nemo-latest" },
+  ];
+
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [model, setModel] = useState(models[0].value); // store value
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -38,7 +45,7 @@ export default function ChatPage() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: [...messages, userMessage] }),
+        body: JSON.stringify({ messages: [...messages, userMessage], model }),
       });
 
       if (!res.ok) throw new Error("API request failed");
@@ -48,8 +55,7 @@ export default function ChatPage() {
       const assistantMessage: ChatMessage = {
         role: "assistant",
         content:
-          data?.choices?.[0]?.message?.content ||
-           "Response from Mistral",
+          data?.choices?.[0]?.message?.content || "Response from Mistral",
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
@@ -78,6 +84,22 @@ export default function ChatPage() {
         {darkMode ? "☀️" : "🌙"}
       </button>
 
+  <div className={styles.modelSelector}>
+    <label>
+      Model:
+      <select
+        value={model}
+        onChange={(e) => setModel(e.target.value)}
+      >
+        {models.map((m) => (
+          <option key={m.value} value={m.value}>
+            {m.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  </div>
+
     <div className={styles.chatWrapper}>
       <header className={styles.header}>
         <h1>Mistral Chat</h1>
@@ -100,7 +122,6 @@ export default function ChatPage() {
 ) : (
   msg.content
 )}
-
           </div>
         ))}
         <div ref={messagesEndRef} />

@@ -1,6 +1,6 @@
 import { Mistral } from '@mistralai/mistralai';
 
-export async function sendChat(messages: ChatMessage[]) {
+export async function sendChat(messages: ChatMessage[], model: string) {
   const apiKey = process.env.API_KEY;
 if (!apiKey) {
   throw new Error('No Api key!');
@@ -10,8 +10,7 @@ const client = new Mistral({ apiKey });
 
   try {
     const embeddingsResponse = await client.chat.complete({
-      //model: 'mistral-large-latest',
-      model: 'mistral-medium-latest', // TODO add multiple LM selection
+      model: model || 'mistral-medium-latest',
       messages,
     });
 

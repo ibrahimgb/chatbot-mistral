@@ -10,7 +10,8 @@ const client = new Mistral({ apiKey });
 
   try {
     const embeddingsResponse = await client.chat.complete({
-      model: 'mistral-large-latest',
+      //model: 'mistral-large-latest',
+      model: 'mistral-medium-latest', // TODO add multiple LM selection
       messages,
     });
 

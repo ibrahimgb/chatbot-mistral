@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ChatMessage, sendChat } from "../../api/mistral";
 import styles from "./chat.module.scss";
 
 export default function ChatPage() {
@@ -25,11 +24,18 @@ export default function ChatPage() {
     setInput("");
 
     try {
-      const response = await sendChat([...messages, userMessage]);
-      
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: [...messages, userMessage] }),
+      });
+
+      const data = await res.json();
+
       const assistantMessage: ChatMessage = {
         role: "assistant",
-        content: response.data?.[0]?.embedding?.[0]?.toString() || "Response",
+        content:
+          data.choices[0].message.content || "No response from Mistral",
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
@@ -53,7 +59,9 @@ export default function ChatPage() {
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`${styles.message} ${msg.role === "user" ? styles.user : styles.assistant}`}
+            className={`${styles.message} ${
+              msg.role === "user" ? styles.user : styles.assistant
+            }`}
           >
             {msg.content}
           </div>

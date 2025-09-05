@@ -14,18 +14,13 @@ if (!apiKey) {
 const client = new Mistral({ apiKey });
 
   try {
-    const response = await client.chat.complete({
+    const embeddingsResponse = await client.chat.complete({
       model: 'mistral-large-latest',
       messages,
     });
 
-    const embeddingsResponse = await client.embeddings.create({
-    model: 'mistral-embed',
-    inputs: [...messages.toString()],
-    });
 
     return await embeddingsResponse;
-
   } catch (error) {
     console.error('Error sending to Mistral:', error);
     throw error;

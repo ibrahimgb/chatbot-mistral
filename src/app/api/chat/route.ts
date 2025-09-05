@@ -1,5 +1,4 @@
-// src/app/api/chat/route.ts
-import { ChatMessage, sendChat } from "@/app/api/mistral";
+import { sendChat } from "@/app/api/mistral";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {

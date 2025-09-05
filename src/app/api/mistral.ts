@@ -1,10 +1,5 @@
 import { Mistral } from '@mistralai/mistralai';
 
-export type ChatMessage = {
-  role: 'user' | 'assistant';
-  content: string;
-};
-
 export async function sendChat(messages: ChatMessage[]) {
   const apiKey = process.env.API_KEY;
 if (!apiKey) {

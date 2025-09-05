@@ -1,14 +1,18 @@
 import { Mistral } from '@mistralai/mistralai';
 
-const apiKey = process.env.API_KEY;
-console.log(apiKey)
+export type ChatMessage = {
+  role: 'user' | 'assistant';
+  content: string;
+};
+
+export async function sendChat(messages: ChatMessage[]) {
+  const apiKey = process.env.API_KEY;
 if (!apiKey) {
   throw new Error('No Api key!');
 }
 
-const client = new Mistral({ apiKey: apiKey });
+const client = new Mistral({ apiKey });
 
-export async function sendChat(messages: []){
   try {
     const response = await client.chat.complete({
       model: 'mistral-large-latest',
@@ -17,7 +21,7 @@ export async function sendChat(messages: []){
 
     const embeddingsResponse = await client.embeddings.create({
     model: 'mistral-embed',
-    inputs: messages,
+    inputs: [...messages.toString()],
     });
 
     return await embeddingsResponse;

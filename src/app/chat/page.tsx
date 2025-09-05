@@ -14,6 +14,7 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -23,6 +24,7 @@ export default function ChatPage() {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -47,7 +49,7 @@ export default function ChatPage() {
         role: "assistant",
         content:
           data?.choices?.[0]?.message?.content ||
-          "Response from Mistral",
+           "Response from Mistral",
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
@@ -62,11 +64,20 @@ export default function ChatPage() {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") handleSend();
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
   };
 
   return (
+    <div className={`${styles.chatPageWrapper} ${darkMode ? styles.dark : ""}`}>
+      
+      <button className={styles.darkModeBtn} onClick={toggleDarkMode}>
+        {darkMode ? "☀️" : "🌙"}
+      </button>
+
     <div className={styles.chatWrapper}>
       <header className={styles.header}>
         <h1>Mistral Chat</h1>
@@ -95,16 +106,16 @@ export default function ChatPage() {
         <div ref={messagesEndRef} />
       </div>
 <div className={styles.inputContainer}>
-  <textarea
-    className={styles.chatInput}
-    placeholder="Type a message..."
-    value={input}
-    onChange={(e) => setInput(e.target.value)}
-    onKeyDown={handleKeyDown}
-    disabled={isLoading}
-    rows={1}
-  />
-  <button
+          <textarea
+            className={styles.chatInput}
+            placeholder="Type a message..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            disabled={isLoading}
+            rows={1}
+          />
+          <button
     className={styles.sendButton}
     onClick={handleSend}
     disabled={isLoading}
@@ -112,7 +123,7 @@ export default function ChatPage() {
     {isLoading ? "..." : <FontAwesomeIcon icon={faPaperPlane} />}
   </button>
 </div>
-
+</div>
     </div>
   );
 }

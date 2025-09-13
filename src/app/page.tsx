@@ -1,9 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import './globals.scss';
+import "./globals.scss";
 import styles from "./page.module.scss";
-
 
 export default function Home() {
   const router = useRouter();
@@ -12,7 +11,8 @@ export default function Home() {
     <div className={styles.mainWrapper}>
       <div className={styles.messageBox}>
         <p>
-          Thank you for reviewing my application! My name is <strong>Ibrahim</strong>.<br />
+          Thank you for reviewing my application! My name is{" "}
+          <strong>Ibrahim</strong>.<br />
           See you in the interview if I pass the challenge!
         </p>
       </div>

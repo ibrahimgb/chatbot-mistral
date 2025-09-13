@@ -1,4 +1,4 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .chatPageWrapper {
   position: relative;
@@ -40,7 +40,7 @@
   border-radius: 0.5rem;
   cursor: pointer;
   font-size: 1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   transition: background 0.2s;
 
   &:hover {
@@ -62,7 +62,7 @@
 .header {
   background-color: $header-bg;
   color: $header-color;
-  padding: .3rem;
+  padding: 0.3rem;
   text-align: center;
   font-weight: bold;
 
@@ -87,7 +87,6 @@
   }
 }
 
-
 .messagesContainer {
   flex: 1;
   padding: 1rem;
@@ -105,14 +104,21 @@
   font-size: 1rem;
   white-space: pre-wrap;
 
-  strong { font-weight: 600; }
-  em { font-style: italic; }
+  strong {
+    font-weight: 600;
+  }
+  em {
+    font-style: italic;
+  }
 
-  ul, ol {
+  ul,
+  ol {
     margin: 0.5rem 0 0.5rem 1.25rem;
   }
 
-  li { margin-bottom: 0.25rem; }
+  li {
+    margin-bottom: 0.25rem;
+  }
 
   code {
     background: #eee;
@@ -132,7 +138,10 @@
     font-size: 0.9em;
   }
 
-  a { color: $primary; text-decoration: underline; }
+  a {
+    color: $primary;
+    text-decoration: underline;
+  }
 }
 
 .user {
@@ -167,7 +176,9 @@
   overflow-y: auto;
   line-height: 1.4;
 
-  &:disabled { background-color: $neutral-light; }
+  &:disabled {
+    background-color: $neutral-light;
+  }
 }
 
 .sendButton {
@@ -184,8 +195,13 @@
   justify-content: center;
   transition: background 0.2s ease-in-out;
 
-  &:hover:not(:disabled) { background-color: $primary-dark; }
-  &:disabled { opacity: 0.6; cursor: not-allowed; }
+  &:hover:not(:disabled) {
+    background-color: $primary-dark;
+  }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 .modelSelector {
@@ -198,7 +214,7 @@
   border-radius: 0.5rem;
   padding: 0.25rem 0.5rem;
   font-size: 0.9rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 
   select {
     padding: 0.25rem 0.5rem;
@@ -208,17 +224,28 @@
     color: #333;
     font-size: 0.9rem;
     cursor: pointer;
-    &:focus { outline: none; box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.5); }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(16, 163, 127, 0.5);
+    }
   }
 
-  option { padding: 0.25rem 0.5rem; }
+  option {
+    padding: 0.25rem 0.5rem;
+  }
 
   .dark & {
     background-color: $input-dark-bg;
     color: $text-dark;
 
-    select { background-color: #444; color: $text-dark; }
-    option { background-color: #444; color: $text-dark; }
+    select {
+      background-color: #444;
+      color: $text-dark;
+    }
+    option {
+      background-color: #444;
+      color: $text-dark;
+    }
   }
 }
 

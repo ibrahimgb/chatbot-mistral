@@ -63,7 +63,10 @@ export default function ChatPage() {
       console.error(error);
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Something went wrong. Please try again." },
+        {
+          role: "assistant",
+          content: "Something went wrong. Please try again.",
+        },
       ]);
     } finally {
       setIsLoading(false);
@@ -79,57 +82,55 @@ export default function ChatPage() {
 
   return (
     <div className={`${styles.chatPageWrapper} ${darkMode ? styles.dark : ""}`}>
-      
       <button className={styles.darkModeBtn} onClick={toggleDarkMode}>
         {darkMode ? "☀️" : "🌙"}
       </button>
 
-  <div className={styles.modelSelector}>
-    <label>
-      Model:
-      <select
-        value={model}
-        onChange={(e) => setModel(e.target.value)}
-      >
-        {models.map((m) => (
-          <option key={m.value} value={m.value}>
-            {m.label}
-          </option>
-        ))}
-      </select>
-    </label>
-  </div>
-
-    <div className={styles.chatWrapper}>
-      <header className={styles.header}>
-            <h1>
-              <span className={styles.highlight}>Mistral</span> Chat
-              <span className={styles.subtitle}>Chatbot demo for the Internship </span>
-            </h1>
-      </header>
-
-      <div className={styles.messagesContainer}>
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            className={`${styles.message} ${
-              msg.role === "user" ? styles.user : styles.assistant
-            }`}
-          >
-      {msg.role === "assistant" ? (
-  <div className={styles.markdown}>
-    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {msg.content}
-    </ReactMarkdown>
-  </div>
-) : (
-  msg.content
-)}
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
+      <div className={styles.modelSelector}>
+        <label>
+          Model:
+          <select value={model} onChange={(e) => setModel(e.target.value)}>
+            {models.map((m) => (
+              <option key={m.value} value={m.value}>
+                {m.label}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
-<div className={styles.inputContainer}>
+
+      <div className={styles.chatWrapper}>
+        <header className={styles.header}>
+          <h1>
+            <span className={styles.highlight}>Mistral</span> Chat
+            <span className={styles.subtitle}>
+              Chatbot demo for the Internship{" "}
+            </span>
+          </h1>
+        </header>
+
+        <div className={styles.messagesContainer}>
+          {messages.map((msg, i) => (
+            <div
+              key={i}
+              className={`${styles.message} ${
+                msg.role === "user" ? styles.user : styles.assistant
+              }`}
+            >
+              {msg.role === "assistant" ? (
+                <div className={styles.markdown}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {msg.content}
+                  </ReactMarkdown>
+                </div>
+              ) : (
+                msg.content
+              )}
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+        <div className={styles.inputContainer}>
           <textarea
             className={styles.chatInput}
             placeholder="Type a message..."
@@ -140,14 +141,14 @@ export default function ChatPage() {
             rows={1}
           />
           <button
-    className={styles.sendButton}
-    onClick={handleSend}
-    disabled={isLoading}
-  >
-    {isLoading ? "..." : <FontAwesomeIcon icon={faPaperPlane} />}
-  </button>
-</div>
-</div>
+            className={styles.sendButton}
+            onClick={handleSend}
+            disabled={isLoading}
+          >
+            {isLoading ? "..." : <FontAwesomeIcon icon={faPaperPlane} />}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

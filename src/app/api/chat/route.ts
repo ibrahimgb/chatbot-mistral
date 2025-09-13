@@ -3,14 +3,17 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { messages, model } = (await req.json()) as { messages: ChatMessage[], model:string };
-    const result = await sendChat(messages , model);
+    const { messages, model } = (await req.json()) as {
+      messages: ChatMessage[];
+      model: string;
+    };
+    const result = await sendChat(messages, model);
     return NextResponse.json(result);
   } catch (err) {
     console.error(err);
     return NextResponse.json(
       { error: "Failed to send chat", err },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
